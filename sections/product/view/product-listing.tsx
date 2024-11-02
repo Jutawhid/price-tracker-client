@@ -57,7 +57,6 @@ export default async function ProductListingPage({}: ProductListingPage) {
     ...(categories && { categories: categories })
   };
   const product = await getProductListData(filters);
-  console.log('🚀 ~ ProductListingPage ~ data:', product);
 
   const data = await fakeProducts.getProducts(filters);
   const totalProducts = data.total_products;
@@ -69,7 +68,7 @@ export default async function ProductListingPage({}: ProductListingPage) {
         <Breadcrumbs items={breadcrumbItems} />
         <div className="flex items-start justify-between">
           <Heading
-            title={`Products (${totalProducts})`}
+            title={`Products`}
             description="Manage products (Server side table functionalities.)"
           />
           <Link
@@ -80,7 +79,7 @@ export default async function ProductListingPage({}: ProductListingPage) {
           </Link>
         </div>
         <Separator />
-        <ProductTable data={products} totalData={totalProducts} />
+        <ProductTable />
       </div>
     </PageContainer>
   );

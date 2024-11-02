@@ -1,6 +1,8 @@
 import { NextAuthConfig } from 'next-auth';
 import CredentialProvider from 'next-auth/providers/credentials';
 import GithubProvider from 'next-auth/providers/github';
+import { cookies } from 'next/headers';
+// import Cookies from 'js-cookie';
 
 const authConfig = {
   providers: [
@@ -27,8 +29,9 @@ const authConfig = {
           headers: { 'Content-Type': 'application/json; charset=utf-8' }
         });
         const user = await res.json();
-        console.log("🚀 ~ authorize ~ user:", user)
         if (res.ok && user) {
+          const token = cookies().get('authjs.session-token')?.value;
+          cookies().set('token', token ?? '');
           return user;
         }
 
