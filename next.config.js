@@ -1,8 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  experimental: {
+    serverActions: true,
+    serverComponentsExternalPackages: ['mongoose']
+  },
   images: {
-    domains: ['utfs.io', 'api.slingacademy.com']
+    domains: ['m.media-amazon.com','img.drz.lazcdn.com']
   }
-};
+}
 
-module.exports = nextConfig;
+module.exports = nextConfig

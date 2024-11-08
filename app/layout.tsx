@@ -1,37 +1,36 @@
-import Providers from '@/components/layout/providers';
-import { Toaster } from '@/components/ui/toaster';
-import '@uploadthing/react/styles.css';
-import type { Metadata } from 'next';
-import NextTopLoader from 'nextjs-toploader';
-import { Inter } from 'next/font/google';
-import './globals.css';
-import { auth } from '@/auth';
+import Navbar from '@/components/Navbar'
+import './globals.css'
+import type { Metadata } from 'next'
+import { Inter, Space_Grotesk, Noto_Sans } from 'next/font/google'
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({ subsets: ['latin'] })
+const spaceGrotesk = Space_Grotesk({ 
+  subsets: ['latin'], 
+  weight: ['300', '400', '500', '600', '700']
+ })
+const notoSans = Noto_Sans({ 
+  subsets: ['latin'], 
+  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900']
+ })
 
 export const metadata: Metadata = {
-  title: 'Next Shadcn',
-  description: 'Basic dashboard with Next.js and Shadcn'
-};
+  title: 'Pricewise',
+  description: 'Track product prices effortlessly and save money on your online shopping.',
+}
 
-export default async function RootLayout({
-  children
+export default function RootLayout({
+  children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
-  const session = await auth();
   return (
     <html lang="en">
-      <body
-        className={`${inter.className} overflow-hidden `}
-        suppressHydrationWarning={true}
-      >
-        <NextTopLoader showSpinner={false} />
-        <Providers session={session}>
-          <Toaster />
+      <body className={notoSans.className}>
+        <main className="max-w-10xl mx-auto">
+          <Navbar />
           {children}
-        </Providers>
+        </main>
       </body>
     </html>
-  );
+  )
 }
