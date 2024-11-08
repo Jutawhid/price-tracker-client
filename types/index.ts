@@ -7,8 +7,14 @@ export type User = {
 };
 
 export type Product = {
+  total_sold: number | undefined;
+  category_name: string;
+  brand_name: string;
+  rating: number;
+  product_description: any;
   id?: string;
-  url: string;
+  category_id?: number;
+  product_url: string;
   currency: string;
   image_url: string;
   product_name: string;

@@ -49,29 +49,26 @@ export async function scrapeAndStoreProduct(productUrl: string) {
   }
 }
 
-export async function getProductById(productId: string) {
+export async function getProductById(productId: number) {
   try {
-    connectToDB();
+    const product = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products/public/getProductDetailById/${productId}`).then(
+      (res) => res.json()
+    );
+    console.log("🚀 ~ getProductById ~ product:", product)
 
-    const product = await Product.findOne({ _id: productId });
-
-    if(!product) return null;
-
-    return product;
+    return product?.data;
   } catch (error) {
     console.log(error);
   }
 }
 
-export async function getAllProducts() {
+export async function getAllProducts({ page = 1, size = 10 }) {
   try {
     connectToDB();
 
-    const products = await fetch("http://localhost:8080/api/v1/products/public/allproducts?page=1&size=10&status=1").then(
+    const products = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products/public/allproducts?page=${page}&size=${size}&status=1`).then(
       (res) => res.json()
     );
-    console.log(products)
-
     return products;
   } catch (error) {
     console.log(error);

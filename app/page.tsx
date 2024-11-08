@@ -5,11 +5,12 @@ import { getAllProducts } from "@/lib/actions";
 import ProductCard from "@/components/ProductCard";
 import Link from "next/link";
 
-
 const Home = async () => {
-  const allProducts = await getAllProducts();
-  console.log("🚀 ~ Home ~ allProducts:", allProducts)
-
+  const allProducts = await getAllProducts( {
+    page: 1,
+    size: 10
+  });
+  
   return (
     <div
       className="relative flex size-full min-h-screen flex-col bg-white group/design-root overflow-x-hidden"
@@ -18,7 +19,6 @@ const Home = async () => {
       }}
     >
       <div className="layout-container flex h-full grow flex-col">
-        
         <div className="px-40 flex flex-1 justify-center py-5">
           <div className="layout-content-container flex flex-col max-w-[960px] flex-1">
             <div className="@container">
@@ -41,24 +41,9 @@ const Home = async () => {
             <h2 className="text-[#111418] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">
               Recently Tracked Products
             </h2>
-            <div className="grid grid-cols-[repeat(auto-fit,minmax(158px,1fr))] gap-3 p-4">
-            {allProducts?.collection?.map((product: any) => (
-              <div key={product?.id} className="flex flex-col gap-3 pb-3">
-                <div
-                  className="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-xl"
-                  style={{
-                    backgroundImage: ` url("${product?.image_url}");`,
-                  }}
-                ></div>
-                <div>
-                  <p className="text-[#111418] text-base font-medium leading-normal">
-                  {product?.product_name}
-                  </p>
-                  <p className="text-[#60758a] text-sm font-normal leading-normal">
-                    {product?.currentPrice}{` `}{product?.currency}
-                  </p>
-                </div>
-              </div>
+            <div className="grid grid-cols-[repeat(auto-fit,minmax(158px,1fr))] gap-3">
+              {allProducts?.collection?.map((product: any) => (
+                <ProductCard key={product?.id} product={product} />
               ))}
             </div>
             <h2 className="text-[#111418] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">
