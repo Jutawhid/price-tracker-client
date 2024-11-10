@@ -73,6 +73,17 @@ export async function getAllProducts({ page = 1, size = 10 }) {
     console.log(error);
   }
 }
+export async function getAllCategories() {
+  try {
+
+    const categories = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/categories/all`).then(
+      (res) => res.json()
+    );
+    return categories?.data;
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 export async function getSimilarProducts(productId: string) {
   try {

@@ -8,6 +8,10 @@ export type User = {
   email: string;
 };
 
+export type Category = {
+  id: number | undefined;
+  category_name: string;
+}
 export type Product = {
   total_sold: number | undefined;
   category_name: string;
@@ -38,7 +42,8 @@ export type Product = {
 export type ProductList = {
   allProducts: {
     collection: Product[]
-  }
+  },
+  allCategories: Category[]
   
 };
 

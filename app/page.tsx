@@ -1,16 +1,18 @@
 import HeroCarousel from "@/components/HeroCarousel";
 import Searchbar from "@/components/Searchbar";
 import Image from "next/image";
-import { getAllProducts } from "@/lib/actions";
+import { getAllCategories, getAllProducts } from "@/lib/actions";
 import ProductCard from "@/components/ProductCard";
 import Link from "next/link";
 import RecentTrackProduct from "@/features/homepage/recent-product";
+import PopularProducts from "@/features/homepage/popular-products";
 
 const Home = async () => {
   const allProducts = await getAllProducts( {
     page: 1,
     size: 10
   });
+  const allCategories = await getAllCategories();
   
   return (
     <div
@@ -40,75 +42,7 @@ const Home = async () => {
               </div>
             </div>
             <RecentTrackProduct allProducts={allProducts}/>
-            <h2 className="text-[#111418] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">
-              Popular Products
-            </h2>
-            <div className="grid grid-cols-[repeat(auto-fit,minmax(158px,1fr))] gap-3 p-4">
-              <div className="flex flex-col gap-3 pb-3">
-                <div
-                  className="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-xl"
-                  style={{
-                    backgroundImage: ` url("https://cdn.usegalileo.ai/sdxl10/5cdae63d-1b94-440f-9557-de41dec11cf8.png");`,
-                  }}
-                ></div>
-                <div>
-                  <p className="text-[#111418] text-base font-medium leading-normal">
-                    Fire TV Stick 4K streaming device
-                  </p>
-                  <p className="text-[#60758a] text-sm font-normal leading-normal">
-                    $39.99
-                  </p>
-                </div>
-              </div>
-              <div className="flex flex-col gap-3 pb-3">
-                <div
-                  className="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-xl"
-                  style={{
-                    backgroundImage: ` url("https://cdn.usegalileo.ai/stability/edcdbc64-49b5-4743-85f4-9e7f4904c6d8.png");`,
-                  }}
-                ></div>
-                <div>
-                  <p className="text-[#111418] text-base font-medium leading-normal">
-                    Bose QuietComfort 35 II Wireless Bluetooth Headphones
-                  </p>
-                  <p className="text-[#60758a] text-sm font-normal leading-normal">
-                    $199.00
-                  </p>
-                </div>
-              </div>
-              <div className="flex flex-col gap-3 pb-3">
-                <div
-                  className="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-xl"
-                  style={{
-                    backgroundImage: ` url("https://cdn.usegalileo.ai/stability/6fbc2de6-182a-4f95-9f3b-be8280a6066d.png");`,
-                  }}
-                ></div>
-                <div>
-                  <p className="text-[#111418] text-base font-medium leading-normal">
-                    Kindle Paperwhite
-                  </p>
-                  <p className="text-[#60758a] text-sm font-normal leading-normal">
-                    $89.99
-                  </p>
-                </div>
-              </div>
-              <div className="flex flex-col gap-3 pb-3">
-                <div
-                  className="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-xl"
-                  style={{
-                    backgroundImage: ` url("https://cdn.usegalileo.ai/stability/42e7c652-41a5-4b4f-85bc-ef07d1eeb7a6.png");`,
-                  }}
-                ></div>
-                <div>
-                  <p className="text-[#111418] text-base font-medium leading-normal">
-                    iRobot Roomba 694 Robot Vacuum-Wi-Fi Connectivity
-                  </p>
-                  <p className="text-[#60758a] text-sm font-normal leading-normal">
-                    $249.99
-                  </p>
-                </div>
-              </div>
-            </div>
+            <PopularProducts allProducts={allProducts} allCategories={allCategories}/>
             <h2 className="text-[#111418] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">
               Top Amazon Price Drops
             </h2>
