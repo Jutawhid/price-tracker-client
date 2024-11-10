@@ -64,7 +64,6 @@ export async function getProductById(productId: number) {
 
 export async function getAllProducts({ page = 1, size = 10 }) {
   try {
-    connectToDB();
 
     const products = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products/public/allproducts?page=${page}&size=${size}&status=1`).then(
       (res) => res.json()

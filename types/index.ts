@@ -35,6 +35,13 @@ export type Product = {
   users?: User[];
 };
 
+export type ProductList = {
+  allProducts: {
+    collection: Product[]
+  }
+  
+};
+
 export type NotificationType =
   | "WELCOME"
   | "CHANGE_OF_STOCK"

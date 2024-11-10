@@ -3,6 +3,8 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Inter, Space_Grotesk, Noto_Sans } from "next/font/google";
 import { ContextProvider } from "@/context/provider";
+import { PrimeReactProvider } from 'primereact/api';
+import "primereact/resources/themes/lara-light-cyan/theme.css";
 
 const inter = Inter({ subsets: ["latin"] });
 const spaceGrotesk = Space_Grotesk({
@@ -41,10 +43,12 @@ export default function RootLayout({
       </head>
       <body className={notoSans.className}>
         <main className="max-w-10xl mx-auto">
+        <PrimeReactProvider>
           <ContextProvider>
             <Navbar />
             {children}
           </ContextProvider>
+        </PrimeReactProvider>
         </main>
       </body>
     </html>
