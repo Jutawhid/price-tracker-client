@@ -1,45 +1,42 @@
 "use client";
 
+import CartUpLogo from "@/../public/header-logo.svg";
 import { Api, usePost } from "@/features/api";
+import { TGlobalErrorResponse, TSignUpData } from "@/features/model";
+import { AxiosError, AxiosResponse } from "axios";
 import { Formik } from "formik";
 import Image from "next/image";
 import { useRouter } from "nextjs-toploader/app";
 import { toast } from "sonner";
-import {
-  InitialValue,
-  SignupRequest,
-  SignupResponse,
-  SignUpSchema,
-} from "./form.config";
-import { SignUpForm } from "./signup-form.component";
+import { InitialValue, SignupRequest, SignupResponse, SignUpSchema } from "./form.config";
+import { SignInForm, SignUpForm } from "./signin-form.component";
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import { useSession } from "next-auth/react";
-import { Message } from "primereact/message";
+import { useEffect } from "react";
 
-export function SignUp() {
-  const { status } = useSession();
+export function SignIn() {
   const { push } = useRouter();
-  const [error, setError] = useState("");
 
   //SING UP START
   const {
     data,
     trigger,
     error: signupError,
-  } = usePost<SignupRequest, SignupResponse>(Api.SignUp, undefined);
+  } = usePost<SignupRequest, SignupResponse>(
+    Api.SignUp,
+    undefined,
+  );
 
   useEffect(() => {
     if (data?.isSuccess) {
+      console.log("🚀 ~ useEffect ~ data:", data)
       toast.success(data?.message);
-      push("/auth/signin");
+      // push("/auth/login");
     }
   }, [data]);
 
   useEffect(() => {
     if (signupError) {
-      toast.error(signupError?.message);
-      setError(signupError?.message!);
+      // setError(signupError?.message!);
     }
   }, [signupError]);
   const onSubmit = async (values: any) => {
@@ -75,18 +72,15 @@ export function SignUp() {
         </div>
         <div className="mx-auto">
           <h2 className="text-center pb-2 pl-4 text-3xl font-bold md:pb-6 md:pl-0">
-            Sign Up
+            Sign In
           </h2>
-          {error && (
-            <Message severity="error" content={error} className="mb-3 w-full" />
-          )}
 
           <Formik
             initialValues={InitialValue}
             validationSchema={SignUpSchema}
             onSubmit={onSubmit}
           >
-            <SignUpForm />
+            <SignInForm />
           </Formik>
         </div>
       </div>
