@@ -1,49 +1,52 @@
 "use client";
 
-import CartUpLogo from "@/../public/header-logo.svg";
 import { Api, usePost } from "@/features/api";
-import { TGlobalErrorResponse, TSignUpData } from "@/features/model";
-import { AxiosError, AxiosResponse } from "axios";
 import { Formik } from "formik";
 import Image from "next/image";
 import { useRouter } from "nextjs-toploader/app";
 import { toast } from "sonner";
-import { InitialValue, SignupRequest, SignupResponse, SignUpSchema } from "./form.config";
-import { SignInForm, SignUpForm } from "./signin-form.component";
+import { InitialValue, SignInRequest, SignInResponse, SignInSchema } from "./form.config";
+import { SignInForm } from "./signin-form.component";
 import Link from "next/link";
 import { useEffect } from "react";
+import { signIn, useSession } from "next-auth/react";
+import { useSearchParams } from "next/navigation";
 
 export function SignIn() {
+  const { status } = useSession();
   const { push } = useRouter();
+  const { get } = useSearchParams();
+  const callbackUrl = get("callbackUrl") !== null ? get("callbackUrl") : "/";
 
-  //SING UP START
-  const {
-    data,
-    trigger,
-    error: signupError,
-  } = usePost<SignupRequest, SignupResponse>(
-    Api.SignUp,
-    undefined,
-  );
+  // const onSubmit = async (values: any) => {
+  //   const { ...restValues } = values;
+  //   trigger(restValues);
+  // };
+  const onSubmit = async (values: SignInRequest) => {
+    const res = await signIn("credentials", {
+      redirect: false,
+      ...values,
+    });
+    console.log("🚀 ~ onSubmit ~ res:", res)
+    // if (res?.ok) {
+    //   console.log("🚀 ~ onSubmit ~ res:", res)
+    // } else {
+    //   toast.error("Username or password incorrect");
+    // }
+    // try{
+    //   console.log("🚀 ~ onSubmit ~ res:", res)
+    //   if (res?.ok) {
+    //     console.log("🚀 ~ onSubmit ~ res:", res)
+    //     window.location.href = callbackUrl as string;
+    //   } else {
+    //     toast.error("Username or password incorrect");
+    //   }
 
-  useEffect(() => {
-    if (data?.isSuccess) {
-      console.log("🚀 ~ useEffect ~ data:", data)
-      toast.success(data?.message);
-      // push("/auth/login");
-    }
-  }, [data]);
-
-  useEffect(() => {
-    if (signupError) {
-      // setError(signupError?.message!);
-    }
-  }, [signupError]);
-  const onSubmit = async (values: any) => {
-    const { ...restValues } = values;
-    trigger(restValues);
+    // } catch (error) {
+    //   console.log("🚀 ~ onSubmit ~ error:", error)
+      
+    // }
   };
-
   return (
     <div className="flex w-full mt-5">
       <p className="flex align-items-center justify-content-center font-bold m-2 px-5 py-3 border-round lg:w-[700px]">
@@ -77,7 +80,7 @@ export function SignIn() {
 
           <Formik
             initialValues={InitialValue}
-            validationSchema={SignUpSchema}
+            validationSchema={SignInSchema}
             onSubmit={onSubmit}
           >
             <SignInForm />

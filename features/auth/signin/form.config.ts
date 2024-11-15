@@ -6,9 +6,8 @@ import {
 import * as yup from "yup";
 
 
-export const SignUpSchema = yup.object({
+export const SignInSchema = yup.object({
   email: yup.string().label("Email").min(1).max(50).required(),
-  name: yup.string().label("Name").min(1).max(50).required(),
   password: yup
     .string()
     .label("Password")
@@ -17,15 +16,14 @@ export const SignUpSchema = yup.object({
     .matches(passwordRegex, passwordMessage),
 });
 
-export type SignupRequest = yup.InferType<typeof SignUpSchema>;
+export type SignInRequest = yup.InferType<typeof SignInSchema>;
 
-export const InitialValue: SignupRequest = {
+export const InitialValue: SignInRequest = {
   email: "",
   password: "",
-  name: "",
 };
 
-export type SignupResponse = {
+export type SignInResponse = {
   code: string;
   isSuccess: boolean;
   message: string;
@@ -33,11 +31,12 @@ export type SignupResponse = {
 };
 
 export type Data = {
+  id: number;
   message: string;
-  accessToken: string;
-  tokenType: string;
-  refreshToken: string;
-  user: User;
+  access_token: string;
+  // refreshToken: string;
+  // user: User;
+  role: string;
 };
 
 export type User = {
@@ -53,8 +52,8 @@ export type User = {
   profileImage: string;
   deviceToken: string;
 };
-export type SignupApiResponse = ReturnType<
-  typeof usePost<SignupRequest, SignupResponse>
+export type SignInApiResponse = ReturnType<
+  typeof usePost<SignInRequest, SignInResponse>
 >;
 
-export type SignUpApiError = SignupApiResponse["error"];
+export type SignInApiError = SignInApiResponse["error"];
