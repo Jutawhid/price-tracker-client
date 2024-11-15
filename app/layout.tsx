@@ -4,13 +4,13 @@ import type { Metadata } from "next";
 import { Inter, Space_Grotesk, Noto_Sans } from "next/font/google";
 import { ContextProvider } from "@/context/provider";
 import { PrimeReactProvider } from 'primereact/api';
-import "primereact/resources/themes/lara-light-cyan/theme.css";
+import 'primeicons/primeicons.css';
+import 'primereact/resources/themes/saga-blue/theme.css';
+import 'primereact/resources/primereact.css';
+import 'primeflex/primeflex.css';
 
 const inter = Inter({ subsets: ["latin"] });
-const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-});
+
 const notoSans = Noto_Sans({
   subsets: ["latin"],
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],

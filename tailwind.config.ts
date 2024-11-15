@@ -4,21 +4,23 @@ module.exports = {
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./node_modules/primereact/**/*.{js,ts,jsx,tsx}",
+    "./features/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
-      container: {
-        center: true,
-        // padding: "15px",
-      },
-      screens: {
-        xs: "350px",
-        sm: "540px",
-        md: "720px",
-        lg: "960px",
-        xl: "1140px",
-        xxl: "1320px",
-      },
+    container: {
+      center: true,
+      // padding: "15px",
+    },
+    screens: {
+      xs: "350px",
+      sm: "540px",
+      md: "720px",
+      lg: "960px",
+      xl: "1140px",
+      xxl: "1320px",
+    },
       colors: {
         primary: {
           DEFAULT: "#E43030",
@@ -45,7 +47,6 @@ module.exports = {
       },
       fontFamily: {
         inter: ['Inter', 'sans-serif'],
-        spaceGrotesk: ['Space Grotesk', 'sans-serif'],
         notoSans: ['Noto Sans', 'sans-serif']
       },
       borderRadius: {

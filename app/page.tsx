@@ -6,14 +6,15 @@ import ProductCard from "@/components/ProductCard";
 import Link from "next/link";
 import RecentTrackProduct from "@/features/homepage/recent-product";
 import PopularProducts from "@/features/homepage/popular-products";
+import HeroImage from "@/features/homepage/hero-image";
 
 const Home = async () => {
-  const allProducts = await getAllProducts( {
+  const allProducts = await getAllProducts({
     page: 1,
-    size: 10
+    size: 10,
   });
   const allCategories = await getAllCategories();
-  
+
   return (
     <div
       className="relative flex size-full min-h-screen flex-col bg-white group/design-root overflow-x-hidden"
@@ -22,27 +23,14 @@ const Home = async () => {
       }}
     >
       <div className="layout-container flex h-full grow flex-col">
-        <div className="px-40 flex flex-1 justify-center py-5">
-          <div className="layout-content-container flex flex-col max-w-[960px] flex-1">
-            <div className="@container">
-              <div className="@[480px]:p-4">
-                <div
-                  className="flex min-h-[480px] flex-col gap-6 bg-cover bg-center bg-no-repeat @[480px]:gap-8 @[480px]:rounded-xl items-start justify-end px-4 pb-10 @[480px]:px-10"
-                  style={{
-                    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.4) 100%), url("https://cdn.usegalileo.ai/stability/3505fb59-b606-4467-a83b-f19155771ecd.png");`,
-                  }}
-                >
-                  <h1 className="text-white text-4xl font-black leading-tight tracking-[-0.033em] @[480px]:text-5xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em] text-center">
-                    Today's Deals
-                  </h1>
-                  <button className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 @[480px]:h-12 @[480px]:px-5 bg-[#2589f4] text-white text-sm font-bold leading-normal tracking-[0.015em] @[480px]:text-base @[480px]:font-bold @[480px]:leading-normal @[480px]:tracking-[0.015em]">
-                    <span className="truncate">Shop All</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-            <RecentTrackProduct allProducts={allProducts}/>
-            <PopularProducts allProducts={allProducts} allCategories={allCategories}/>
+        <div className="flex flex-1 justify-center py-5">
+          <div className="layout-content-container flex flex-col max-w-[1320px] flex-1">
+            <HeroImage/>
+            <RecentTrackProduct allProducts={allProducts} allCategories={[]} />
+            <PopularProducts
+              allProducts={allProducts}
+              allCategories={allCategories}
+            />
             <h2 className="text-[#111418] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">
               Top Amazon Price Drops
             </h2>

@@ -1,0 +1,17 @@
+export enum ECustomerDeliveryStatus {
+  Pending = 0,
+  Confirmed = 1,
+  ReachedOurLogisticsFacility = 2,
+  DroppedOff = 3,
+  ProcessedAndReadyToShip = 4,
+  InTransit = 5,
+  HandoverToOurDeliveryPartner = 6,
+  OnTheWayToDelivery = 7,
+  Delivered = 8,
+  Canceled = 9,
+  ReturnRequest = 10,
+  ReturnReceived = 11,
+  ReturnSuccessful = 12,
+  ReturnUnsuccessful = 13,
+  PartiallyDelivered = 14,
+}

@@ -50,7 +50,7 @@ const Navbar = () => {
             />
 
             <p className="nav-logo">
-              Price<span className="text-primary">Wise</span>
+              Price<span className="text-primary">Spy</span>BD
             </p>
           </Link>
         </div>
@@ -73,7 +73,7 @@ const Navbar = () => {
             className="text-[#111418] text-sm font-medium leading-normal"
             href="#"
           >
-            Deals
+            Popular Products
           </a>
           <a
             className="text-[#111418] text-sm font-medium leading-normal"
@@ -81,14 +81,36 @@ const Navbar = () => {
           >
             Price Drops
           </a>
-          <a
+          {/* <a
             className="text-[#111418] text-sm font-medium leading-normal"
             href="#"
           >
             Categories
-          </a>
+          </a> */}
         </div>
         <div className="flex gap-2">
+          <Link href="/auth/signup" className="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 bg-[#f0f2f5] text-[#111418] gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5">
+            <div
+              className="text-[#111418]"
+              data-icon="Bell"
+              data-size="20px"
+              data-weight="regular"
+            >
+              Signup
+            </div>
+          </Link>
+          <button className="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 bg-[#f0f2f5] text-[#111418] gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5">
+            <div
+              className="text-[#111418]"
+              data-icon="User"
+              data-size="20px"
+              data-weight="regular"
+            >
+              Signin
+            </div>
+          </button>
+        </div>
+        {/* <div className="flex gap-2">
           <button className="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 bg-[#f0f2f5] text-[#111418] gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5">
             <div
               className="text-[#111418]"
@@ -125,7 +147,7 @@ const Navbar = () => {
               </svg>
             </div>
           </button>
-        </div>
+        </div> */}
       </div>
     </header>
   );
