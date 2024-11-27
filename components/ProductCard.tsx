@@ -8,6 +8,7 @@ interface Props {
 }
 
 const ProductCard = ({ product }: Props) => {
+  console.log("🚀 ~ ProductCard ~ product:", product)
   return (
     <Link href={`/products/${product?.id}`} key={product.id}>
       <div
@@ -24,8 +25,8 @@ const ProductCard = ({ product }: Props) => {
         <div>
           <p className="product-title">{product?.product_name}</p>
           <p className="text-[#60758a] text-sm font-normal leading-normal">
-            {/* {product?.currentPrice}{` `}{product?.currency} */}
-            $39.99
+            {/* {product?.last_price}{` `}{product?.currency} */}
+            {product?.last_price}
           </p>
         </div>
       </div>

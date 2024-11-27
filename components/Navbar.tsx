@@ -43,15 +43,15 @@ const Navbar = () => {
           </div>
           <Link href="/" className="flex items-center gap-1">
             <Image
-              src="/assets/icons/logo.svg"
-              width={27}
-              height={27}
+              src="/assets/icons/logo.png"
+              width={145}
+              height={45}
               alt="logo"
             />
 
-            <p className="nav-logo">
-              Price<span className="text-primary">Spy</span>BD
-            </p>
+            {/* <p className="nav-logo">
+              track<span className="text-primary">My</span>price
+            </p> */}
           </Link>
         </div>
         <div className="flex">
@@ -89,7 +89,10 @@ const Navbar = () => {
           </a> */}
         </div>
         <div className="flex gap-2">
-          <Link href="/auth/signup" className="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 bg-[#f0f2f5] text-[#111418] gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5">
+          <Link
+            href="/auth/signup"
+            className="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 bg-[#f0f2f5] text-[#111418] gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5"
+          >
             <div
               className="text-[#111418]"
               data-icon="Bell"
