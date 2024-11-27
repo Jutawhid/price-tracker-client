@@ -73,6 +73,31 @@ export async function getAllProducts({ page = 1, size = 10 }) {
     console.log(error);
   }
 }
+
+// Get All Propular Products
+export async function getAllHighLightedProducts({ page = 1, size = 10 }) {
+  try {
+
+    const products = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/homepage/public/highLightedProducts?page=${page}&size=${size}&status=1`).then(
+      (res) => res.json()
+    );
+    return products;
+  } catch (error) {
+    console.log(error);
+  }
+}
+// Get All Propular Products
+export async function getAllPopularProducts({ page = 1, size = 10 }) {
+  try {
+
+    const products = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/homepage/public/popularProducts?page=${page}&size=${size}&status=1`).then(
+      (res) => res.json()
+    );
+    return products;
+  } catch (error) {
+    console.log(error);
+  }
+}
 export async function getAllCategories() {
   try {
 

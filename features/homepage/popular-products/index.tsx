@@ -1,7 +1,6 @@
 "use client";
 
 import ProductCard from "@/components/ProductCard";
-import { getAllCategories } from "@/lib/actions";
 import { Category, ProductList } from "@/types";
 import { Dropdown } from "primereact/dropdown";
 import React from "react";

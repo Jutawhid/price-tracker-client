@@ -1,7 +1,7 @@
 import HeroCarousel from "@/components/HeroCarousel";
 import Searchbar from "@/components/Searchbar";
 import Image from "next/image";
-import { getAllCategories, getAllProducts } from "@/lib/actions";
+import { getAllCategories, getAllHighLightedProducts, getAllPopularProducts, getAllProducts } from "@/lib/actions";
 import ProductCard from "@/components/ProductCard";
 import Link from "next/link";
 import RecentTrackProduct from "@/features/homepage/recent-product";
@@ -13,6 +13,8 @@ const Home = async () => {
     page: 1,
     size: 10,
   });
+  const allPopularProducts = await getAllPopularProducts({ page: 1, size: 10 });
+  const allHighLightedProducts = await getAllHighLightedProducts({ page: 1, size: 10 });
   const allCategories = await getAllCategories();
 
   return (
@@ -26,9 +28,9 @@ const Home = async () => {
         <div className="flex flex-1 justify-center py-5">
           <div className="layout-content-container flex flex-col max-w-[1320px] flex-1">
             <HeroImage/>
-            <RecentTrackProduct allProducts={allProducts} allCategories={[]} />
+            <RecentTrackProduct allProducts={allHighLightedProducts} allCategories={[]} />
             <PopularProducts
-              allProducts={allProducts}
+              allProducts={allPopularProducts}
               allCategories={allCategories}
             />
             <h2 className="text-[#111418] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">
