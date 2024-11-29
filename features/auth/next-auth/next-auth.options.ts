@@ -19,7 +19,6 @@ export const AuthOptions: NextAuthOptions = {
 
       // This function is called at server side only
       async authorize(credentials) {
-        let res: AxiosResponse;
         try {
           const API_URL = `${process.env.NEXT_PUBLIC_API_URL}${Api.SignIn}`;
           const res = await fetch(API_URL, {
@@ -30,12 +29,14 @@ export const AuthOptions: NextAuthOptions = {
             }),
           });
           const data = await res.json();
-
+          console.log("🚀 ~ authorize ~ data:", data);
+          if (res.status === 200) {
             return {
               ...data,
             };
+          }
         } catch (error) {
-          toast.error(error as string);
+          console.log("🚀 ~ authorize ~ error:", error);
         }
         return null;
       },
@@ -53,26 +54,17 @@ export const AuthOptions: NextAuthOptions = {
     strategy: "jwt",
   },
 
-  // Provide user data in the session
   callbacks: {
-    async jwt({ token, user, account }) {
-      // initial sign in
-      // add user data in the token
-      if (user && account?.provider !== "google") {
-        return {
-          ...token,
-          ...user,
-        };
+    async jwt({ token, user }) {
+      if (user) {
+        token.user = user;
       }
       return token;
     },
-    async session({ session, token }) {
-      if (token && session.user) {
-        session.access_token = token.access_token;
-        session.error = token.error;
-      }
 
+    async session({ session, token }) {
+      session.user = token.user as SignInResponse;
       return session;
-    },
+    }
   },
 };

@@ -16,36 +16,25 @@ export function SignIn() {
   const { status } = useSession();
   const { push } = useRouter();
   const { get } = useSearchParams();
-    const callbackUrl = get("callbackUrl") !== null ? get("callbackUrl") : "/";
+    // const callbackUrl = get("callbackUrl") !== null ? get("callbackUrl") : "/";
 
   // const onSubmit = async (values: any) => {
   //   const { ...restValues } = values;
   //   trigger(restValues);
   // };
   const onSubmit = async (values: SignInRequest) => {
+    console.log("🚀 ~ onSubmit ~ values:", values)
     const res = await signIn("credentials", {
       redirect: false,
       ...values,
     });
-    console.log("🚀 ~ onSubmit ~ res:", res)
-    // if (res?.ok) {
-    //   console.log("🚀 ~ onSubmit ~ res:", res)
-    // } else {
-    //   toast.error("Username or password incorrect");
-    // }
-    // try{
-    //   console.log("🚀 ~ onSubmit ~ res:", res)
-    //   if (res?.ok) {
-    //     console.log("🚀 ~ onSubmit ~ res:", res)
-    //     window.location.href = callbackUrl as string;
-    //   } else {
-    //     toast.error("Username or password incorrect");
-    //   }
-
-    // } catch (error) {
-    //   console.log("🚀 ~ onSubmit ~ error:", error)
-      
-    // }
+   
+    if (res?.ok) {
+      console.log("🚀 ~ onSubmit ~ res:", res)
+      // window.location.href = callbackUrl as string;
+    } else {
+      toast.error("Username or password incorrect");
+    }
   };
   return (
     <div className="flex w-full mt-5">
