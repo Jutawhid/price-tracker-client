@@ -27,7 +27,7 @@ const PopularProducts = ({ allProducts, allCategories }: ProductList) => {
           className="w-[10rem] md:w-4rem h-[40px]"
         />
       </div>
-      <div className="grid grid-cols-[repeat(auto-fit,minmax(158px,1fr))] gap-3">
+      <div className="grid grid-cols-5 gap-1">
         {allProducts?.collection?.map((product: any) => (
           <ProductCard key={product?.id} product={product} />
         ))}

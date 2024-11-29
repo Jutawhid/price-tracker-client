@@ -28,6 +28,7 @@ export type Product = {
   originalPrice: number;
   price: PriceHistoryItem[] | [];
   last_price: number;
+  average_price: number;
   highestPrice: number;
   lowestPrice: number;
   averagePrice: number;

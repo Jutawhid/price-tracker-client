@@ -13,20 +13,24 @@ const ProductCard = ({ product }: Props) => {
     <Link href={`/products/${product?.id}`} key={product.id}>
       <div
         key={product?.id}
-        className="flex flex-col gap-3 p-3 rounded-xl border border-gray-200"
+        className="product-card"
       >
         <div
-          className="w-full bg-center bg-no-repeat aspect-square bg-cover"
+          className="product-card_img w-full bg-center bg-no-repeat aspect-square bg-cover"
           style={{
             backgroundImage: ` url("${product?.image_url}");`,
             borderRadius: "10px 10px 0px 0px",
           }}
         ></div>
         <div>
-          <p className="product-title">{product?.product_name}</p>
-          <p className="text-[#60758a] text-sm font-normal leading-normal">
+          <p className="product-title line-clamp-3">{product?.product_name}</p>
+          <p className="product-card-price">
             {/* {product?.last_price}{` `}{product?.currency} */}
-            {product?.last_price}
+            ৳ {product?.last_price}
+          </p>
+          <p className="product-card-avg-price">
+            {/* {product?.last_price}{` `}{product?.currency} */}
+            Avg: ৳ {product?.average_price}
           </p>
         </div>
       </div>
