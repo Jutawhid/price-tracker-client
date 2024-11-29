@@ -10,9 +10,8 @@ interface Props {
 const ProductCard = ({ product }: Props) => {
   console.log("🚀 ~ ProductCard ~ product:", product)
   return (
-    <Link href={`/products/${product?.id}`} key={product.id}>
+    <Link href={`/products/${product?.product_id}`} key={product.product_id}>
       <div
-        key={product?.id}
         className="product-card"
       >
         <div

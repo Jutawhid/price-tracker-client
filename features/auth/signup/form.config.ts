@@ -33,11 +33,10 @@ export type SignupResponse = {
 };
 
 export type Data = {
-  message: string;
-  accessToken: string;
-  tokenType: string;
-  refreshToken: string;
-  user: User;
+  access_token: string;
+  role: string;
+  // refreshToken: string;
+  // user: User;
 };
 
 export type User = {

@@ -1,4 +1,4 @@
-import {SignIn} from "@/features/auth/signin"
+import {SignIn} from "@/features/auth/signin";
 
 
 function Signin() {

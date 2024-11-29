@@ -13,6 +13,9 @@ export type Category = {
   category_name: string;
 }
 export type Product = {
+  highest_price: number;
+  lowest_price: number;
+  product_id: number;
   total_sold: number | undefined;
   category_name: string;
   brand_name: string;

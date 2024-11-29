@@ -16,7 +16,7 @@ export function SignIn() {
   const { status } = useSession();
   const { push } = useRouter();
   const { get } = useSearchParams();
-  const callbackUrl = get("callbackUrl") !== null ? get("callbackUrl") : "/";
+    const callbackUrl = get("callbackUrl") !== null ? get("callbackUrl") : "/";
 
   // const onSubmit = async (values: any) => {
   //   const { ...restValues } = values;

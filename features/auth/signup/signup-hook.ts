@@ -1,11 +1,11 @@
 import { Api } from "@/features/api/endpoints";
 import axios from "axios";
-import { TSingUp } from "./form.config";
+import { SignupRequest } from "./form.config";
 
 export function useSignUp() {
-  const singUpMutation = async (data: TSingUp) => {
+  const singUpMutation = async (data: SignupRequest) => {
     const response = await axios.post(
-      `${process.env.NEXT_PUBLIC_CUSTOMER_SERVICE_API_URL}${Api.SingUp}`,
+      `${process.env.NEXT_PUBLIC_CUSTOMER_SERVICE_API_URL}${Api.SignUp}`,
       data,
     );
 

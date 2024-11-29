@@ -31,20 +31,15 @@ export const AuthOptions: NextAuthOptions = {
           });
           const data = await res.json();
 
-          return {
-            ...data,
-          };
+            return {
+              ...data,
+            };
         } catch (error) {
           toast.error(error as string);
         }
         return null;
       },
     }),
-
-    // GoogleProvider({
-    //   clientId: process.env.GOOGLE_CLIENT_ID as string,
-    //   clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
-    // }),
   ],
 
   // Custom auth pages
@@ -73,14 +68,10 @@ export const AuthOptions: NextAuthOptions = {
     },
     async session({ session, token }) {
       if (token && session.user) {
-        session.user = {
-          code: token.code,
-          success: token.success,
-          message: token.message,
-          data: token.data,
-        };
         session.access_token = token.access_token;
+        session.error = token.error;
       }
+
       return session;
     },
   },

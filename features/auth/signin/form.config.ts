@@ -24,10 +24,12 @@ export const InitialValue: SignInRequest = {
 };
 
 export type SignInResponse = {
-  code: string;
-  isSuccess: boolean;
-  message: string;
-  data: Data;
+  id: number,
+  code: string,
+  message: string,
+  access_token: string,
+  role: string,
+  refreshToken: string,
 };
 
 export type Data = {
