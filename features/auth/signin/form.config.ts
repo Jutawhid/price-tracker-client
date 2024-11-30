@@ -25,20 +25,10 @@ export const InitialValue: SignInRequest = {
 
 export type SignInResponse = {
   id: number,
-  code: string,
   message: string,
   access_token: string,
+  refresh_token : string,
   role: string,
-  refreshToken: string,
-};
-
-export type Data = {
-  id: number;
-  message: string;
-  access_token: string;
-  // refreshToken: string;
-  // user: User;
-  role: string;
 };
 
 export type User = {
@@ -53,6 +43,10 @@ export type User = {
   updatedAt: Date;
   profileImage: string;
   deviceToken: string;
+  message: string,
+  access_token: string,
+  refresh_token : string,
+  role: string,
 };
 export type SignInApiResponse = ReturnType<
   typeof usePost<SignInRequest, SignInResponse>

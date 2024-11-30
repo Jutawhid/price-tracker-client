@@ -1,10 +1,6 @@
 import { Api } from "@/features/api";
-import { AuthApiClient } from "@/features/api/client";
-import { AxiosResponse } from "axios";
 import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { SignInResponse } from "../signin/form.config";
-import { toast } from "sonner";
 
 export const AuthOptions: NextAuthOptions = {
   // Auth providers
@@ -20,7 +16,8 @@ export const AuthOptions: NextAuthOptions = {
       // This function is called at server side only
       async authorize(credentials) {
         try {
-          const API_URL = `${process.env.NEXT_PUBLIC_API_URL}${Api.SignIn}`;
+          const API_URL = `http://localhost:8080/api/v1/users/login`;
+          console.log("🚀 ~ authorize ~ API_URL:", API_URL);
           const res = await fetch(API_URL, {
             method: "POST",
             body: JSON.stringify({
@@ -29,16 +26,18 @@ export const AuthOptions: NextAuthOptions = {
             }),
           });
           const data = await res.json();
-          console.log("🚀 ~ authorize ~ data:", data);
-          if (res.status === 200) {
-            return {
-              ...data,
-            };
+          if (!res.ok) {
+            throw new Error(data.message || "Authentication failed");
           }
+          return {
+            id: data.id.toString(),
+            access_token: data.access_token,
+            refresh_token: data.access_token,
+          };
         } catch (error) {
-          console.log("🚀 ~ authorize ~ error:", error);
+          console.error("Authorization error:", error);
+          return null;
         }
-        return null;
       },
     }),
   ],
@@ -57,14 +56,25 @@ export const AuthOptions: NextAuthOptions = {
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-        token.user = user;
+        return {
+          ...token,
+          ...user,
+        };
       }
       return token;
     },
 
     async session({ session, token }) {
-      session.user = token.user as SignInResponse;
+      session.user = {
+        id: token.id,
+        message: token.message,
+        token: token.access_token,
+        role: token.role,
+      };
+      session.access_token = token.access_token;
+      session.refresh_token = token.refresh_token;
+      session.error = token.error;
       return session;
-    }
+    },
   },
 };

@@ -6,30 +6,11 @@ import {
   FormikTextField,
 } from "@/components/ui/form";
 import { FormikPasswordField } from "@/components/ui/form/formik-password-input.component";
-// import { Button } from "@headlessui/react";
-import { Form, useFormikContext } from "formik";
-// import { signIn } from "next-auth/react";
+
+import { Form } from "formik";
 import Link from "next/link";
-// import { FaGoogle } from "react-icons/fa";
-// import { TSingUp } from "./form.config";
 
 export function SignInForm() {
-  // const { values } = useFormikContext<TSingUp>();
-  // Get the current date
-  const today = new Date();
-
-  // Calculate the maximum allowable date for 13 years old
-  const maxDate = new Date(
-    today.getFullYear() - 18,
-    today.getMonth(),
-    today.getDate()
-  );
-
-  // const handleGoogleSignIn = async () => {
-  //   await signIn("google", {
-  //     callbackUrl: "/",
-  //   });
-  // };
   return (
     <Form>
       <div className="flex flex-col justify-between gap-4 rounded-lg bg-white px-4 py-4 md:gap-12 md:p-8">
@@ -64,9 +45,9 @@ export function SignInForm() {
           </FormikSubmitButton>
 
           <p>
-            Already member?{" "}
+            Don't have account?{" "}
             <Link
-              href="/auth/login"
+              href="/auth/signup"
               className="cursor-pointer font-bold text-link"
             >
               SignUp

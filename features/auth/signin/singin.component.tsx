@@ -16,26 +16,36 @@ export function SignIn() {
   const { status } = useSession();
   const { push } = useRouter();
   const { get } = useSearchParams();
-    // const callbackUrl = get("callbackUrl") !== null ? get("callbackUrl") : "/";
+    const callbackUrl = get("callbackUrl") !== null ? get("callbackUrl") : "/";
 
   // const onSubmit = async (values: any) => {
   //   const { ...restValues } = values;
   //   trigger(restValues);
   // };
   const onSubmit = async (values: SignInRequest) => {
-    console.log("🚀 ~ onSubmit ~ values:", values)
-    const res = await signIn("credentials", {
-      redirect: false,
-      ...values,
-    });
-   
-    if (res?.ok) {
-      console.log("🚀 ~ onSubmit ~ res:", res)
-      // window.location.href = callbackUrl as string;
-    } else {
-      toast.error("Username or password incorrect");
+    try {
+      const res = await signIn("credentials", {
+        redirect: false, // Ensure redirection is disabled
+        ...values,
+      });
+      console.log("🚀 ~ onSubmit ~ res:", res);
+  
+      if (res?.error) {
+        console.error("🚀 ~ onSubmit ~ error:", res.error);
+        localStorage.setItem("error", res.error)
+        toast.error(res.error); // Display error message to the user
+      } else if (res?.ok) {
+        window.location.href = callbackUrl as string;
+      } else {
+        toast.error("Unexpected error occurred");
+      }
+    } catch (error) {
+      console.error("🚀 ~ onSubmit ~ catch error:", error);
+      toast.error("An error occurred during sign in");
+      localStorage.setItem("error", error as string)
     }
   };
+  
   return (
     <div className="flex w-full mt-5">
       <p className="flex align-items-center justify-content-center font-bold m-2 px-5 py-3 border-round lg:w-[700px]">

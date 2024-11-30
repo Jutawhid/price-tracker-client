@@ -1,7 +1,7 @@
 import Navbar from "@/components/Navbar";
 import "./globals.css";
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk, Noto_Sans } from "next/font/google";
+import { Noto_Sans } from "next/font/google";
 import { ContextProvider } from "@/context/provider";
 import { PrimeReactProvider } from 'primereact/api';
 import 'primeicons/primeicons.css';
@@ -9,7 +9,7 @@ import 'primereact/resources/themes/saga-blue/theme.css';
 import 'primereact/resources/primereact.css';
 import 'primeflex/primeflex.css';
 
-const inter = Inter({ subsets: ["latin"] });
+
 
 const notoSans = Noto_Sans({
   subsets: ["latin"],
