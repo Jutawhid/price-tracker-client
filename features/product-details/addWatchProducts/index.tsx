@@ -1,0 +1,1 @@
+export { AddWatchedProduct } from "./add-watch.component";
