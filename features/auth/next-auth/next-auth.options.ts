@@ -16,7 +16,7 @@ export const AuthOptions: NextAuthOptions = {
       // This function is called at server side only
       async authorize(credentials) {
         try {
-          const API_URL = `${process.env.NEXT_PUBLIC_API_URL}/api/v1/users/login`;
+          const API_URL = `${process.env.NEXT_PUBLIC_API_URL}/users/login`;
           const res = await fetch(API_URL, {
             method: "POST",
             body: JSON.stringify({
