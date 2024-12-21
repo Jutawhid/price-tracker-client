@@ -1,7 +1,6 @@
 "use client";
 
 import {
-  FormikCheckbox,
   FormikSubmitButton,
   FormikTextField,
 } from "@/components/ui/form";

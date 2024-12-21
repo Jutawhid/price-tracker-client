@@ -54,7 +54,6 @@ export async function getProductById(productId: number) {
     const product = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products/public/getProductDetailById/${productId}`).then(
       (res) => res.json()
     );
-    console.log("🚀 ~ getProductById ~ product:", product)
 
     return product?.data;
   } catch (error) {
