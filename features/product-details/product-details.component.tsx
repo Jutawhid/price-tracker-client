@@ -12,12 +12,13 @@ import Link from "next/link";
 import { redirect, useSearchParams } from "next/navigation";
 import { useRouter } from "next/router";
 import ProductHistoryComponent from "./product-history.component";
+import { AddWatchedProduct } from "./addWatchProducts";
 
 type Props = {
   id: string;
 };
 
-const ProductDetails = async ({ id}: Props) => {
+const ProductDetails = async ({ id }: Props) => {
   const product: Product = await getProductById(Number(id));
 
   if (!product) redirect("/");
@@ -39,7 +40,7 @@ const ProductDetails = async ({ id}: Props) => {
               alt={product?.product_name}
               width={1580}
               height={1400}
-              className="m-auto"
+              className="m-auto border-radius-[17px]"
             />
           </div>
         </div>
@@ -59,7 +60,7 @@ const ProductDetails = async ({ id}: Props) => {
               </Link>
             </div>
 
-            <div className="flex items-center gap-3">
+            {/* <div className="flex items-center gap-3">
               <div className="product-hearts">
                 <Image
                   src="/assets/icons/red-heart.svg"
@@ -90,14 +91,13 @@ const ProductDetails = async ({ id}: Props) => {
                   height={20}
                 />
               </div>
-            </div>
+            </div> */}
           </div>
 
           <div className="product-info">
             <div className="flex flex-col gap-2">
               <p className="text-[34px] text-secondary font-bold">
-                {/* {product.currency}  */}
-                ৳ {formatNumber(product.last_price)}
+                {/* {product.currency}  */}৳ {formatNumber(product.last_price)}
               </p>
               {/* <p className="text-[21px] text-black opacity-50 line-through">
                 {product.currency} {formatNumber(product.originalPrice)}
@@ -107,47 +107,52 @@ const ProductDetails = async ({ id}: Props) => {
             <div className="flex flex-col gap-4">
               <div className="flex gap-3">
                 <div className="product-stars bg-[#FFCF0F] rounded-10 p-2">
-                  <Link href={product.product_url} target="_blank">View at Daraz</Link>
+                  <Link href={product.product_url} target="_blank">
+                    View at Daraz
+                  </Link>
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="my-7 flex flex-col gap-5">
+          <div className="my-5 flex flex-col gap-5">
             <div className="flex gap-5 flex-wrap">
               <PriceInfoCard
                 title="Current Price"
                 iconSrc="/assets/icons/price-tag.svg"
                 // value={`${product.currency} ${formatNumber(product.currentPrice)}`}
-                value={`${product?.currency == "BDT" ? "৳" : "৳"} ${formatNumber(
-                  product?.last_price
-                )}`}
+                value={`${
+                  product?.currency == "BDT" ? "৳" : "৳"
+                } ${formatNumber(product?.last_price)}`}
               />
               <PriceInfoCard
                 title="Average Price"
                 iconSrc="/assets/icons/chart.svg"
-                value={`${product?.currency == "BDT" ? "৳" : "৳"} ${formatNumber(
-                  product?.average_price
-                )}`}
+                value={`${
+                  product?.currency == "BDT" ? "৳" : "৳"
+                } ${formatNumber(product?.average_price)}`}
               />
               <PriceInfoCard
                 title="Highest Price"
                 iconSrc="/assets/icons/arrow-up.svg"
-                value={`${product?.currency == "BDT" ? "৳" : "৳"} ${formatNumber(
-                  product?.highest_price
-                )}`}
+                value={`${
+                  product?.currency == "BDT" ? "৳" : "৳"
+                } ${formatNumber(product?.highest_price)}`}
               />
               <PriceInfoCard
                 title="Lowest Price"
                 iconSrc="/assets/icons/arrow-down.svg"
-                value={`${product?.currency == "BDT" ? "৳" : "৳"} ${formatNumber(
-                  product?.lowest_price
-                )}`}
+                value={`${
+                  product?.currency == "BDT" ? "৳" : "৳"
+                } ${formatNumber(product?.lowest_price)}`}
               />
             </div>
           </div>
-
-          {/* <Modal productId={id} /> */}
+          <div className="mt-5 flex flex-col gap-5">
+            <div className="flex gap-5 flex-wrap">
+              <AddWatchedProduct />
+            </div>
+          </div>
         </div>
       </div>
 
@@ -169,7 +174,7 @@ const ProductDetails = async ({ id}: Props) => {
           <ProductSpecification product={product} />
         </div>
 
-        <ProductHistoryComponent product={product}/>
+        <ProductHistoryComponent product={product} />
 
         <div id="alart" className="scroll-mt-[90px] md:mt-5">
           Question

@@ -60,7 +60,7 @@
   }
 
   .product-image {
-    @apply flex-grow max-w-full py-16 border border-[#CDDBFF] rounded-[17px];
+    @apply flex-grow max-w-full py-0 border border-[#CDDBFF] rounded-[17px];
   }
 
   .product-info {
