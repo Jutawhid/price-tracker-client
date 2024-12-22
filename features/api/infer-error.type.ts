@@ -1,8 +1,3 @@
-import {
-  Data,
-  ErrorClass,
-} from "features/product/bulk-add-products/form.config";
-
 type RequestNonObjectValueType =
   | string
   | number
@@ -28,11 +23,11 @@ type ValidationErrorsType<R> = {
 };
 
 export type InferErrorType<T> = {
+  statusCode: any;
   isSuccess?: boolean;
-  data?: string | Array<string> | Array<object> | Data;
   status?: number;
-  message?: string;
   title?: string;
-  statusCode: number;
+  message?: string;
+  data: any;
   validationErrors?: ValidationErrorsType<T>;
 };

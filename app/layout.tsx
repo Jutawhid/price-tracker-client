@@ -8,6 +8,7 @@ import 'primeicons/primeicons.css';
 import 'primereact/resources/themes/saga-blue/theme.css';
 import 'primereact/resources/primereact.css';
 import 'primeflex/primeflex.css';
+import { SessionProvider } from "next-auth/react";
 
 
 
@@ -24,8 +25,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  session
 }: {
   children: React.ReactNode;
+  session: any
 }) {
   return (
     <html lang="en">

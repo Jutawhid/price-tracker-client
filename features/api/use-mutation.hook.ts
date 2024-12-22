@@ -30,8 +30,8 @@ export type RequestOptions<T> = Omit<
  * @param servicename
  */
 export function useMutation<
-  RequestType = Record<string, unknown>,
-  ResponseType = Record<string, unknown>
+  RequestType = any,
+  ResponseType = any
 >(
   url: string,
   method: HTTPMutatingMethod,
@@ -42,7 +42,7 @@ export function useMutation<
   const { headers, ...restOfOptions } = options || {};
   const ctx = useSWRMutation(
     url,
-    ((url, data) => {
+    ((url: string, data: { arg: any; }) => {
       return clientList.ApiClient.request({
         url: url as string,
         method: method,
@@ -55,7 +55,7 @@ export function useMutation<
         }),
         ...restOfOptions,
       }).then((r) => r.data as ResponseType);
-    }) as MutationFetcher<ResponseType, RequestType, string>,
+    }) as MutationFetcher<ResponseType, any, string>,
     { throwOnError: false }
   );
 

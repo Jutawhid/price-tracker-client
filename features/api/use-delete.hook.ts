@@ -15,7 +15,7 @@ import { ServiceTypes } from "./constants";
 export function useDelete<
   RequestType = Record<string, unknown>,
   ResponseType = Record<string, unknown>
->(url: string, options?: RequestOptions<RequestType>, servicename?: ServiceTypes) {
-  const ctx = useMutation<RequestType, ResponseType>(url, "DELETE", options, servicename);
+>(url: string, options?: RequestOptions<RequestType>) {
+  const ctx = useMutation<RequestType, ResponseType>(url, "DELETE", options);
   return ctx;
 }

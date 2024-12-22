@@ -39,6 +39,7 @@
     "yup": "^1.4.0"
   },
   "devDependencies": {
+    "@types/lodash": "^4.17.13",
     "@types/luxon": "^3.4.2",
     "@types/node": "^20",
     "@types/nodemailer": "^6.4.11",
