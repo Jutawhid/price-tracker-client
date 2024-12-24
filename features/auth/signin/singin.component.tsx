@@ -48,7 +48,6 @@ export function SignIn() {
     <div className="flex w-full mt-5">
       <p className="flex align-items-center justify-content-center font-bold m-2 px-5 py-3 border-round lg:w-[700px]">
         <img
-          loading="eager"
           src="https://camelcamelcamel.com/cdn-cgi/imagedelivery/xo6xxztHGfobo4prc8GRDw/5a070f4d-565d-4ecd-b9e7-7f288c923900/public"
           width={555}
           height={270}
