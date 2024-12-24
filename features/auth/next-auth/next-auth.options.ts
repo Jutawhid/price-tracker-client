@@ -15,28 +15,23 @@ export const AuthOptions: NextAuthOptions = {
 
       // This function is called at server side only
       async authorize(credentials) {
-        try {
-          const API_URL = `${process.env.NEXT_PUBLIC_API_URL}/users/login`;
-          const res = await fetch(API_URL, {
-            method: "POST",
-            body: JSON.stringify({
-              email: credentials?.email,
-              password: credentials?.password,
-            }),
-          });
-          const data = await res.json();
-          if (!res.ok) {
-            throw new Error(data.message || "Authentication failed");
-          }
+        const API_URL = `${process.env.NEXT_PUBLIC_API_URL}/users/login`;
+        const res = await fetch(API_URL, {
+          method: "POST",
+          body: JSON.stringify(credentials),
+        });
+        const user = await res.json();
+        console.log("🚀 ~ authorize ~ res:", res)
+
+        console.log("🚀 ~ authorize ~ user:", user)
+        if (res.ok && user) {
           return {
-            id: data.id.toString(),
-            access_token: data.access_token,
-            refresh_token: data.access_token,
+            id: user.id.toString(),
+            access_token: user.access_token,
+            refresh_token: user.access_token,
           };
-        } catch (error) {
-          console.error("Authorization error:", error);
-          return null;
         }
+        throw new Error(user?.message || "Authorization failed");
       },
     }),
   ],
@@ -64,6 +59,8 @@ export const AuthOptions: NextAuthOptions = {
     },
 
     async session({ session, token }) {
+      console.log("🚀 ~ session ~ token:", token)
+      console.log("🚀 ~ session ~ session:", session)
       session.user = {
         id: token.id,
         message: token.message,

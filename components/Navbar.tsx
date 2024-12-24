@@ -7,6 +7,7 @@ import { Button } from "primereact/button";
 import { IconField } from "primereact/iconfield";
 import { InputIcon } from "primereact/inputicon";
 import { InputText } from "primereact/inputtext";
+import Logo from "@/public/assets/icons/logo.svg";
 
 const navIcons = [
   { src: "/assets/icons/search.svg", alt: "search" },
@@ -16,21 +17,13 @@ const navIcons = [
 
 const Navbar = () => {
   const { status } = useSession();
-  // console.log("🚀 ~ Navbar ~ session:", status == "authenticated");
   return (
     <header className="w-full">
       <div className="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#f0f2f5] px-10 py-3">
         <div className="flex items-center gap-4 text-[#111418]">
-          <div className="size-4">
-            
-          </div>
+          <div className="size-4"></div>
           <Link href="/" className="flex items-center gap-1">
-            <Image
-              src="/assets/icons/logo.png"
-              width={145}
-              height={45}
-              alt="logo"
-            />
+            <Image src={Logo} width={145} height={45} alt="logo" />
 
             {/* <p className="nav-logo">
               track<span className="text-primary">My</span>price
