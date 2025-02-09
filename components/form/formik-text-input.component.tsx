@@ -4,7 +4,6 @@
 import { Field, FieldProps, GenericFieldHTMLAttributes } from "formik";
 import { InputText, InputTextProps } from "primereact/inputtext";
 import { useId } from "react";
-import { MdVerifiedUser } from "react-icons/md";
 
 type Props = InputTextProps & {
   label?: string;
@@ -56,12 +55,6 @@ function TextField({
             <label className="text-red-500">{requiredIcon}</label>
           )}
         </div>
-        {isVerificationField && isVerify && isApplicablePage && (
-          <span className="flex items-center gap-1 text-right text-[16px] font-normal text-[#317D35]">
-            <MdVerifiedUser />
-            Verified
-          </span>
-        )}
       </div>
       <div className="relative">
         <InputText

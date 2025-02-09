@@ -1,13 +1,12 @@
 import { useFormikContext } from "formik";
 import { Button, ButtonProps } from "primereact/button";
-import { CgSpinner } from "react-icons/cg";
 
 export function FormikSubmitButton({
   type = "submit",
   disabled,
   outlined,
   className,
-  loadingIcon = <CgSpinner className="icon-spin mr-1" />,
+  loadingIcon,
   ...rest
 }: Readonly<ButtonProps>) {
   const { isSubmitting } = useFormikContext();

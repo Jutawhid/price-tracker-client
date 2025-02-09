@@ -1,4 +1,3 @@
-import { usePost } from "@/features/api";
 import * as yup from "yup";
 
 
@@ -44,8 +43,9 @@ export type User = {
   profileImage: string;
   deviceToken: string;
 };
-export type AddWatchApiResponse = ReturnType<
-  typeof usePost<AddWatchRequest, AddWatchResponse>
->;
+export type AddWatchApiResponse = ReturnType<any>;
+// export type AddWatchApiResponse = ReturnType<
+//   typeof usePost<AddWatchRequest, AddWatchResponse>
+// >;
 
 export type AddWatchApiError = AddWatchApiResponse["error"];

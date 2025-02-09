@@ -1,6 +1,5 @@
 "use client";
 
-import TruckIcon from "@/../public/assets/truck.svg";
 import { numberWithCommas } from "@/features/helper";
 import Image from "next/image";
 import Link from "next/link";
@@ -22,10 +21,6 @@ export function ProductCard({ data }: Readonly<TProps>) {
     isBestSeller,
     totalRating,
   } = data;
-  console.log(
-    "🚀 ~ ProductCard ~ thumbnail:",
-    `${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}/product/200/${thumbnail}`,
-  );
 
   const [fallbackImage, setFallbackImage] = useState<boolean>(false);
   const handleError = () => {
@@ -89,10 +84,7 @@ export function ProductCard({ data }: Readonly<TProps>) {
             </div>
             {totalRating !== 0 ? (
               <div className="flex items-center justify-start text-sm font-medium text-[#7B7B7B]">
-                {/* <Ratings
-                  ratings={ratings}
-                  totalRating={totalRating}
-                /> */}
+                
                 <Image
                   src="/new/review-star-icon.svg"
                   alt="review-star"
@@ -101,15 +93,6 @@ export function ProductCard({ data }: Readonly<TProps>) {
                 ></Image>
                 <p className="px-[1px]">{ratings.toFixed(1)}</p>
                 <p>{`(${totalRating})`}</p>
-              </div>
-            ) : null}
-            {data?.isFreeShippingApplied ? (
-              <div className="my-[10px] flex h-[24px] w-[100px] items-center justify-center gap-[7px] rounded border border-[#00ACD4] text-[10px] font-semibold text-[#00ACD4]">
-                <Image
-                  src={TruckIcon}
-                  alt="alt"
-                />{" "}
-                <p>Free Delivery</p>
               </div>
             ) : null}
           </div>

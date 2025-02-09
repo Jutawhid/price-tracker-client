@@ -1,6 +1,6 @@
 "use client";
 
-import TruckIcon from "@/../public/assets/truck.svg";
+// import TruckIcon from "@/../public/assets/truck.svg";
 import { numberWithCommas } from "@/features/helper";
 import Image from "next/image";
 import Link from "next/link";
@@ -89,10 +89,7 @@ export function ProductCard({ data }: Readonly<TProps>) {
             </div>
             {totalRating !== 0 ? (
               <div className="flex items-center justify-start text-sm font-medium text-[#7B7B7B]">
-                {/* <Ratings
-                  ratings={ratings}
-                  totalRating={totalRating}
-                /> */}
+                
                 <Image
                   src="/new/review-star-icon.svg"
                   alt="review-star"
@@ -103,7 +100,7 @@ export function ProductCard({ data }: Readonly<TProps>) {
                 <p>{`(${totalRating})`}</p>
               </div>
             ) : null}
-            {data?.isFreeShippingApplied ? (
+            {/* {data?.isFreeShippingApplied ? (
               <div className="my-[10px] flex h-[24px] w-[100px] items-center justify-center gap-[7px] rounded border border-[#00ACD4] text-[10px] font-semibold text-[#00ACD4]">
                 <Image
                   src={TruckIcon}
@@ -111,7 +108,7 @@ export function ProductCard({ data }: Readonly<TProps>) {
                 />{" "}
                 <p>Free Delivery</p>
               </div>
-            ) : null}
+            ) : null} */}
           </div>
         </div>
       </div>

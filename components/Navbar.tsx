@@ -7,7 +7,7 @@ import { Button } from "primereact/button";
 import { IconField } from "primereact/iconfield";
 import { InputIcon } from "primereact/inputicon";
 import { InputText } from "primereact/inputtext";
-import Logo from "@/public/assets/icons/logo.svg";
+import Logo from "@/public/assets/icons/logo.png";
 
 const navIcons = [
   { src: "/assets/icons/search.svg", alt: "search" },

@@ -3,6 +3,7 @@ import { twMerge } from 'tailwind-merge';
 import { Active, DataRef, Over } from '@dnd-kit/core';
 import { ColumnDragData } from '@/sections/kanban/board-column';
 import { TaskDragData } from '@/sections/kanban/task-card';
+import { PriceHistoryItem } from '@/types';
 
 type DraggableData = ColumnDragData | TaskDragData;
 

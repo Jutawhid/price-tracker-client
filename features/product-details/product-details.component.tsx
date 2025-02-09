@@ -1,8 +1,4 @@
-import Modal from '@/components/Modal';
 import PriceInfoCard from '@/components/PriceInfoCard';
-import ProductCard from '@/components/ProductCard';
-import { Ratings } from '@/components/ui/product';
-import { dateFormatWithTime } from '@/features/helper';
 import { ProductSpecification } from '@/features/product-details/product-information-specification';
 
 import { formatNumber } from '@/lib/utils';
