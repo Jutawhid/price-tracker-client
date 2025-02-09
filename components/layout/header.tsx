@@ -4,8 +4,6 @@ import { MobileSidebar } from './mobile-sidebar';
 import { UserNav } from './user-nav';
 import Image from 'next/image';
 import Logo from '@/public/assets/icons/logo.png';
-import Link from 'next/link';
-import { Button } from '../ui/button';
 
 export default function Header() {
   return (
