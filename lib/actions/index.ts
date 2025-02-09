@@ -1,12 +1,9 @@
 "use server"
 
 import { revalidatePath } from "next/cache";
-import Product from "../models/product.model";
-import { connectToDB } from "../mongoose";
-import { scrapeAmazonProduct } from "../scraper";
-import { getAveragePrice, getHighestPrice, getLowestPrice } from "../utils";
+// import Product from "../models/product.model";
 import { User } from "@/types";
-import { generateEmailBody, sendEmail } from "../nodemailer";
+// import { generateEmailBody, sendEmail } from "../nodemailer";
 
 // export async function scrapeAndStoreProduct(productUrl: string) {
 //   if(!productUrl) return;
@@ -49,9 +46,11 @@ import { generateEmailBody, sendEmail } from "../nodemailer";
 //   }
 // }
 
+const ApiPrefix = "/api/v1";
+
 export async function getProductById(productId: number) {
   try {
-    const product = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products/public/getProductDetailById/${productId}`).then(
+    const product = await fetch(`${process.env.NEXT_PUBLIC_API_URL}${ApiPrefix}/products/public/getProductDetailById/${productId}`).then(
       (res) => res.json()
     );
 
@@ -64,7 +63,7 @@ export async function getProductById(productId: number) {
 export async function getAllProducts({ page = 1, size = 10 }) {
   try {
 
-    const products = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products/public/allproducts?page=${page}&size=${size}&status=1`).then(
+    const products = await fetch(`${process.env.NEXT_PUBLIC_API_URL}${ApiPrefix}/products/public/allproducts?page=${page}&size=${size}&status=1`).then(
       (res) => res.json()
     );
     return products;
@@ -77,7 +76,7 @@ export async function getAllProducts({ page = 1, size = 10 }) {
 export async function getAllHighLightedProducts({ page = 1, size = 10 }) {
   try {
 
-    const products = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/homepage/public/highLightedProducts?page=${page}&size=${size}&status=1`).then(
+    const products = await fetch(`${process.env.NEXT_PUBLIC_API_URL}${ApiPrefix}/homepage/public/highLightedProducts?page=${page}&size=${size}&status=1`).then(
       (res) => res.json()
     );
     return products;
@@ -89,7 +88,7 @@ export async function getAllHighLightedProducts({ page = 1, size = 10 }) {
 export async function getAllPopularProducts({ page = 1, size = 10 }) {
   try {
 
-    const products = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/homepage/public/popularProducts?page=${page}&size=${size}&status=1`).then(
+    const products = await fetch(`${process.env.NEXT_PUBLIC_API_URL}${ApiPrefix}/homepage/public/popularProducts?page=${page}&size=${size}&status=1`).then(
       (res) => res.json()
     );
     return products;
@@ -100,7 +99,7 @@ export async function getAllPopularProducts({ page = 1, size = 10 }) {
 export async function getAllCategories() {
   try {
 
-    const categories = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/categories/all`).then(
+    const categories = await fetch(`${process.env.NEXT_PUBLIC_API_URL}${ApiPrefix}/categories/all`).then(
       (res) => res.json()
     );
     return categories?.data;
@@ -109,42 +108,25 @@ export async function getAllCategories() {
   }
 }
 
-export async function getSimilarProducts(productId: string) {
-  try {
-    connectToDB();
 
-    const currentProduct = await Product.findById(productId);
+// export async function addUserEmailToProduct(productId: string, userEmail: string) {
+//   try {
+//     const product = await Product.findById(productId);
 
-    if(!currentProduct) return null;
+//     if(!product) return;
 
-    const similarProducts = await Product.find({
-      _id: { $ne: productId },
-    }).limit(3);
+//     const userExists = product.users.some((user: User) => user.email === userEmail);
 
-    return similarProducts;
-  } catch (error) {
-    console.log(error);
-  }
-}
+//     if(!userExists) {
+//       product.users.push({ email: userEmail });
 
-export async function addUserEmailToProduct(productId: string, userEmail: string) {
-  try {
-    const product = await Product.findById(productId);
+//       await product.save();
 
-    if(!product) return;
+//       const emailContent = await generateEmailBody(product, "WELCOME");
 
-    const userExists = product.users.some((user: User) => user.email === userEmail);
-
-    if(!userExists) {
-      product.users.push({ email: userEmail });
-
-      await product.save();
-
-      const emailContent = await generateEmailBody(product, "WELCOME");
-
-      await sendEmail(emailContent, [userEmail]);
-    }
-  } catch (error) {
-    console.log(error);
-  }
-}
+//       await sendEmail(emailContent, [userEmail]);
+//     }
+//   } catch (error) {
+//     console.log(error);
+//   }
+// }

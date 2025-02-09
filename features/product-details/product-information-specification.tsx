@@ -1,6 +1,6 @@
 "use client";
 
-import RefreshIcon from "@/../../public/assets/icons/refresh-icon.svg";
+import RefreshIcon from "@/public/assets/icons/refresh-icon.svg";
 import { Product } from "@/types";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";

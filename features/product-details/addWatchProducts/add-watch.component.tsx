@@ -1,16 +1,15 @@
 "use client";
 
 import { Formik } from "formik";
-import { AddWatchForm } from "./add-watch-form.component";
 import { AddWatchSchema, InitialValue } from "./form.config";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
-import { Button } from "primereact/button";
+import { Button } from "@/components/ui/button";
+import AddWatchForm from "./add-watch-form-new.component";
 
 export function AddWatchedProduct() {
   const onSubmit = () => {};
   const { status } = useSession();
-  console.log("🚀 ~ AddWatchedProduct ~ status:", status)
   return (
     <>
       {status === "authenticated" ? (

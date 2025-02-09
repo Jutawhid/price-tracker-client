@@ -1,11 +1,13 @@
-import ProductCard from "@/components/ProductCard";
-import { ProductList } from "@/types";
-import React from "react";
+import ProductCard from '@/components/ProductCard';
+import { getAllProducts } from '@/features/api/public-api';
+import { ProductList } from '@/types';
+import React from 'react';
 
-function RecentTrackProduct({allProducts}: ProductList) {
+const RecentTrackProduct = async() => {
+  const allProducts = await getAllProducts({ page: 1, size: 10 });
   return (
     <div>
-      <h2 className="text-[#111418] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">
+      <h2 className="px-4 pb-3 pt-5 text-[22px] font-bold leading-tight tracking-[-0.015em] text-[#111418]">
         Highlighted Products
       </h2>
       <div className="grid grid-cols-5 gap-2">
@@ -15,6 +17,6 @@ function RecentTrackProduct({allProducts}: ProductList) {
       </div>
     </div>
   );
-}
+};
 
 export default RecentTrackProduct;

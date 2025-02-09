@@ -8,25 +8,26 @@ interface Props {
 }
 
 const ProductCard = ({ product }: Props) => {
+  console.log("🚀 ~ ProductCard ~ product:", product)
   return (
-    <Link href={`/products/${product?.product_id}`} key={product.product_id}>
+    <Link href={`/products/${product?.product_id}`}>
       <div
-        className="product-card"
+        className="h-[420px] flex flex-col gap-3 p-3 rounded-xl border border-gray-200"
       >
         <div
-          className="product-card_img w-full bg-center bg-no-repeat aspect-square bg-cover"
+          className="object-contain bg-transparent w-full bg-center bg-no-repeat aspect-square bg-cover"
           style={{
             backgroundImage: ` url("${product?.image_url}");`,
             borderRadius: "10px 10px 0px 0px",
           }}
         ></div>
         <div>
-          <p className="product-title line-clamp-3">{product?.product_name}</p>
-          <p className="product-card-price">
+          <p className="text-[16px] leading-6 line-clamp-2">{product?.product_name}</p>
+          <p className="text-center text-black text-[20px] font-semibold leading-normal mt-3">
             {/* {product?.last_price}{` `}{product?.currency} */}
             ৳ {product?.last_price}
           </p>
-          <p className="product-card-avg-price">
+          <p className="text-center text-[#60758a] text-sm font-normal leading-normal">
             {/* {product?.last_price}{` `}{product?.currency} */}
             Avg: ৳ {product?.average_price}
           </p>
